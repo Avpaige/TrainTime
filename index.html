@@ -13,8 +13,84 @@
 </head>
 
 <body>
+  
+    <div class=head>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">TRAIN SCHEDULE</h1>
+                <p class="lead">Never be late again!</p>
+            </div>
+        </div>
+    </div>
 
+    <div class=schedule>
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <div id= "table" class="form-group">Current Train Schedule</div> 
+                <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Train Name</th>
+                            <th scope="col">Destination</th>
+                            <th scope="col">Frequency</th>
+                            <th scope="col">Next Arrival</th>
+                            <th scope="col">Minutes Away</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Philadelphia</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                          </tr>
+                          <tr>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                          </tr>
+                          <tr>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                          </tr>
+                        </tbody>
+                      </table>
+            </div>
+        </div>
+    </div>
 
+    <div class=enter>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                        <form>
+                        <div id= "trnLbl" class="form-group">Add Train</div>        
+                        <div class="form-group">
+                            <label for="TrainName">Train Name</label>
+                            <input type="TrainName" class="form-control" id="train" placeholder="Hogwarts Express">
+                       </div>
+                       <div class="form-group">
+                            <label for="Destination">Destination</label>
+                            <input type="Destination" class="form-control" id="place" placeholder="Hogwarts">
+                       </div>
+                       <div class="form-group">
+                            <label for="Time">First Train Time (HH:mm -military time)</label>
+                            <input type="Time" class="form-control" id="traintime" placeholder="12:00PM">
+                       </div>
+                       <div class="form-group">
+                            <label for="Frequency">Frequency (min)</label>
+                            <input type="Frequency" class="form-control" id="freq" placeholder="30 minutes">
+                       </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                </div>
+            </div>
+        </div>
 
 </body>
 </html>
