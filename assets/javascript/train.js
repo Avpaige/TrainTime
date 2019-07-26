@@ -11,7 +11,7 @@ var config = {
   firebase.initializeApp(config);
   // Your web app's Firebase configuration
 
-  var dataRef = firebase.database();
+  var database = firebase.database();
 
   var trainName = "";
   var destination = "";
@@ -22,12 +22,11 @@ var config = {
 
   $("#add").on("click", function (event){
     event.preventDefault();
-
   
-        trainName = $("#train").val().trim();
-        destination= $("#place").val().trim();
-        firstTrain = $("#traintime").val().trim();
-        frequency = $("#freq").val().trim();
+       var trainName = $("#train").val().trim();
+       var destination= $("#place").val().trim();
+       var firstTrain = $("#traintime").val().trim();
+       var frequency = $("#freq").val().trim();
 
         var newTrain ={
           trainName: trainName,
@@ -37,7 +36,7 @@ var config = {
           dateAdded: firebase.database.ServerValue.TIMESTAMP,
         }
 
-        dataRef.ref().push(newTrain);
+        database.ref().push(newTrain);
 
           console.log(newTrain.trainName);
           console.log(newTrain.destination);
