@@ -16,7 +16,7 @@ var config = {
   // Your web app's Firebase configuration
 
   var database = firebase.database();
-
+  var minAway = 
 
   $("#add").on("click", function (event){
     event.preventDefault();
@@ -34,6 +34,7 @@ var config = {
           firstTrain: firstTrain,
           frequency:frequency,
           dateAdded: firebase.database.ServerValue.TIMESTAMP,
+        
         };
 
         database.ref().push(newTrain);
@@ -49,11 +50,31 @@ var config = {
   database.ref().on("child_added", function(snap) {
     console.log("snap val is "+ snap.val());
 
+    var firstTrainConverted = moment(snap.firstTrain, "HH:mm").subtract(1, "years");     
+    currentTime = moment();
+    var diffTime = moment().diff(moment(firstTrainConverted), "minutes");
+    var tRemainder = diffTime % frequency;
+    var tMinutesTillTrain = frequency - tRemainder;
+
+    // var autoNext = moment(snap.firstTrain).recur().every(snap.frequency).minutes();
+    
+    if (snap.firstTrain > moment()){
+      var nextArrival =snap.firstTrain;
+    }else {
+      var nextArrival = 0;
+    }
+
+  
+    // var timeDiff = moment().diff(firstTrain, "minutes");
+    // var minAway = frequency-(firstTrain % frequency);
+
+    console.log(nextArrival + " next arrival");
+    // console.log (autoNext + "is the auto next");
+    console.log( minAway + "minutes away")
     var trainName = snap.val().trainName;
     var destination= snap.val().destination;
     var frequency =  snap.val().frequency;
-    var nextArrival = 0;
-    var minAway = 0;
+    var minAway= moment().add(tMinutesTillTrain, "minutes");
 
     var newRow = $("<tr>").append(
       $("<td>").text(trainName),
@@ -67,3 +88,5 @@ var config = {
 
   });
 });
+
+
