@@ -1,0 +1,88 @@
+.block {
+   margin-left: 5%;
+   margin-right: 5%;
+
+}
+
+.head{
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.container{
+    background-color: white;
+
+}
+
+.top{
+    background-color: #26abff; 
+    font-size: 30px;
+    height: 60px;
+    color: white;
+    padding-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#body{
+    font-family: 'Ubuntu', sans-serif;
+    background-image: url("../images/station.jpg");
+    background-size: 160%;
+    background-repeat: repeat-y;
+}
+
+.container{
+
+ margin-top: 50px;
+ padding: 25px;
+
+}
+
+
+#trnLbl{
+    height:60px;
+    
+}
+
+.form-group{
+    padding-left:50px;
+    padding-right: 50px;
+}
+
+#add{
+    background-color: #26abff; 
+    color: white;
+   margin-left:50px;
+   margin-top: 20px;
+   font-size: 20px;
+}
+
+.container{
+    border: solid #26abff; 
+    border-width: 5px;
+ 
+}
+
+#botBlock{
+    margin-bottom: 100px;
+
+}
+
+.label{
+    font-size: 20px;
+
+}
+
+tr{
+    text-align: center;
+}
+
+th{
+    font-weight: bold;
+}
+
+td{
+
+    text-align: center;
+}
