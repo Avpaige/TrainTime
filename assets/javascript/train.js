@@ -24,7 +24,7 @@ var config = {
        var trainName = $("#train").val().trim();
        var destination= $("#place").val().trim();
        var firstTrain =  $("#traintime").val().trim();
-       var frequency = $("#freq").val().trim();
+       var frequency = parseInt($("#freq").val().trim());
 
        console.log("train name is " + trainName);
 
@@ -48,33 +48,27 @@ var config = {
   });
 
   database.ref().on("child_added", function(snap) {
-    console.log("snap val is "+ snap.val());
-
-    var firstTrainConverted = moment(snap.firstTrain, "HH:mm").subtract(1, "years");     
-    currentTime = moment();
-    var diffTime = moment().diff(moment(firstTrainConverted), "minutes");
-    var tRemainder = diffTime % frequency;
-    var tMinutesTillTrain = frequency - tRemainder;
-
-    // var autoNext = moment(snap.firstTrain).recur().every(snap.frequency).minutes();
-    
-    if (snap.firstTrain > moment()){
-      var nextArrival =snap.firstTrain;
-    }else {
-      var nextArrival = 0;
-    }
-
-  
-    // var timeDiff = moment().diff(firstTrain, "minutes");
-    // var minAway = frequency-(firstTrain % frequency);
-
-    console.log(nextArrival + " next arrival");
-    // console.log (autoNext + "is the auto next");
-    console.log( minAway + "minutes away")
+ 
+    var now = moment()
     var trainName = snap.val().trainName;
     var destination= snap.val().destination;
     var frequency =  snap.val().frequency;
-    var minAway= moment().add(tMinutesTillTrain, "minutes");
+    var firstTrain = snap.val().firstTrain;
+    var minAway = moment(now).diff(nextArrival, "minutes");
+    var firstTrainConverted = moment(firstTrain, "HH:mm");     
+
+
+    if (moment(now).isAfter(firstTrain)){
+      var diffTime = moment().diff(moment(firstTrainConverted), "minutes");
+      var tRemainder = diffTime % snap.frequency;
+      var minAway = frequency - tRemainder;
+      var nextTrain = moment().add(minAway, "minutes");
+      var nextArrival = nextTrain;
+      console.log(nextTrain, "next train")
+        } else{
+        var nextArrival= firstTrain;
+ 
+    }
 
     var newRow = $("<tr>").append(
       $("<td>").text(trainName),
