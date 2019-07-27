@@ -23,7 +23,7 @@ var config = {
   var minAway = 0;
 
   
-  $("p").text("The Current Time is: " + current);
+  $("p").text("The Current Time Is: " + current);
 
 
   $("#add").on("click", function (event){
@@ -47,12 +47,18 @@ var config = {
 
         database.ref().push(newTrain);
 
-        $("#train").val("");
-        $("#place").val("");
-        $("#traintime").val("");
-        $("#freq").val("");
+              $("#train").val("");
+              $("#place").val("");
+              $("#traintime").val("");
+              $("#freq").val("");
 
-       alert("New Train Added");
+              alert("New Train Added");
+       // if (trainName === "string" && isNumeric(frequency)) {
+          // } else {
+        //   alert ("Something went wrong, please make sure you only enter letters for Train Name and Destinationa and numbers for the first train time and frequency");
+        // }
+
+        
   });
 
   database.ref().on("child_added", function(snap) {
