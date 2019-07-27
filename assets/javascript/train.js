@@ -15,8 +15,16 @@ var config = {
   console.log("firebase is " + firebase)
   // Your web app's Firebase configuration
 
+  var hour = moment().hour();
+  var minute = moment().minutes();
+  var current = moment(hour + ":" + minute, "HH:mm");
+  var current = current.format("hh:mm A")
   var database = firebase.database();
-  var minAway = 
+  var minAway = 0;
+
+  
+  $("p").text("The Current Time is: " + current);
+
 
   $("#add").on("click", function (event){
     event.preventDefault();
@@ -41,41 +49,32 @@ var config = {
 
         $("#train").val("");
         $("#place").val("");
-        $("#rtraintime").val("");
+        $("#traintime").val("");
         $("#freq").val("");
 
        alert("New Train Added");
   });
 
   database.ref().on("child_added", function(snap) {
- 
-    var now = moment()
-    var trainName = snap.val().trainName;
-    var destination= snap.val().destination;
-    var frequency =  snap.val().frequency;
-    var firstTrain = snap.val().firstTrain;
-    var minAway = moment(now).diff(nextArrival, "minutes");
-    var firstTrainConverted = moment(firstTrain, "HH:mm");     
 
-
-    if (moment(now).isAfter(firstTrain)){
-      var diffTime = moment().diff(moment(firstTrainConverted), "minutes");
-      var tRemainder = diffTime % snap.frequency;
-      var minAway = frequency - tRemainder;
-      var nextTrain = moment().add(minAway, "minutes");
-      var nextArrival = nextTrain;
-      console.log(nextTrain, "next train")
-        } else{
-        var nextArrival= firstTrain;
- 
-    }
+     var frequency =  snap.val().frequency;
+     var firstTrain = snap.val().firstTrain
+     var trainName = snap.val().trainName;
+     var destination= snap.val().destination;
+     var firstTrainConverted = moment(firstTrain, "HH:mm").subtract(1, "years");;   
+     var now = moment();
+     var diffTime = moment().diff(moment(firstTrainConverted),"minutes");
+     var tRemainder = diffTime % frequency;
+     var tMinutesTillTrain = frequency - tRemainder;
+     var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+     var nextTrain = moment(nextTrain).format("hh:mm A");
 
     var newRow = $("<tr>").append(
       $("<td>").text(trainName),
       $("<td>").text(destination),
       $("<td>").text(frequency),
-      $("<td>").text(nextArrival),
-      $("<td>").text(minAway),
+      $("<td>").text(nextTrain),
+      $("<td>").text(tMinutesTillTrain),
       );
 
     $(".table > tbody").append(newRow);
