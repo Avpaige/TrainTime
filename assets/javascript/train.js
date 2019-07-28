@@ -53,11 +53,6 @@ var config = {
               $("#freq").val("");
 
               alert("New Train Added");
-       // if (trainName === "string" && isNumeric(frequency)) {
-          // } else {
-        //   alert ("Something went wrong, please make sure you only enter letters for Train Name and Destinationa and numbers for the first train time and frequency");
-        // }
-
         
   });
 
